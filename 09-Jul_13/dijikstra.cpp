@@ -33,14 +33,11 @@ class Graph{
 	int nE;
 public:
 	Graph(int n){
-		int nV = n;
+		nV = n;
 		adjList = new list<Vertex>[nV + 1]();
 		nE = 0;
 	}
 
-	~Graph(){
-		delete [] adjList;
-	}
 
 	void addEdge(int src, int dest, int wt){
 		adjList[src].push_back(Vertex(dest, wt));
@@ -52,7 +49,7 @@ public:
 
 	int dijikstra(int src, int dest){
 		int * dist = new int[nV + 1];
-		const int inf = (int)1e7;
+		const int inf = 10000;
 
 		//initially all set to inf
 		for(int i = 0; i <= nV; ++i){
@@ -86,6 +83,10 @@ public:
 		int ans = dist[dest];
 		delete [] dist;
 		return ans;
+	}
+
+	~Graph(){
+		delete [] adjList;
 	}
 };
 
